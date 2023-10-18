@@ -1,113 +1,237 @@
-import Image from 'next/image'
+"use client";
+
+import {
+  Container,
+  Stack,
+  Flex,
+  Box,
+  Heading,
+  Text,
+  Button,
+  Image,
+  Icon,
+  IconButton,
+  createIcon,
+  IconProps,
+  useColorModeValue,
+  SimpleGrid,
+  StackDivider,
+} from "@chakra-ui/react";
+import { ReactElement } from "react";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="hero">
+      <Hero />
+      <SplitWithImage />
+    </div>
+  );
+}
+
+const Hero = () => (
+  <Container maxW={"7xl"}>
+    <Stack
+      align={"center"}
+      spacing={{ base: 8, md: 10 }}
+      py={{ base: 20, md: 28 }}
+      direction={{ base: "column", md: "row" }}
+    >
+      <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+        <Heading
+          lineHeight={1.1}
+          fontWeight={600}
+          fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+        >
+          <Text
+            as={"span"}
+            position={"relative"}
+            _after={{
+              content: "''",
+              width: "full",
+              height: "30%",
+              position: "absolute",
+              bottom: 1,
+              left: 0,
+              bg: "blue.400",
+              zIndex: -1,
+            }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+            Setup Once,
+          </Text>
+          <br />
+          <Text as={"span"} color={"blue.400"}>
+            access logs everywhere!
+          </Text>
+        </Heading>
+        <Text color={"gray.500"}>
+          Security Logs is SAAS that allows you to stay in touch with state of
+          your machines, servers and more
+        </Text>
+        <Stack
+          spacing={{ base: 4, sm: 6 }}
+          direction={{ base: "column", sm: "row" }}
+        >
+          <Button
+            rounded={"full"}
+            size={"lg"}
+            fontWeight={"normal"}
+            px={6}
+            colorScheme={"blue"}
+            bg={"blue.400"}
+            _hover={{ bg: "blue.500" }}
+          >
+            Get started
+          </Button>
+        </Stack>
+      </Stack>
+      <Flex
+        flex={1}
+        justify={"center"}
+        align={"center"}
+        position={"relative"}
+        w={"full"}
+      >
+        <Blob
+          w={"150%"}
+          h={"150%"}
+          position={"absolute"}
+          top={"-20%"}
+          left={0}
+          zIndex={-1}
+          color={useColorModeValue("blue.500", "blue.500")}
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Box
+          position={"relative"}
+          height={"300px"}
+          rounded={"2xl"}
+          boxShadow={"2xl"}
+          width={"full"}
+          overflow={"hidden"}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <IconButton
+            aria-label={"Play Button"}
+            variant={"ghost"}
+            _hover={{ bg: "transparent" }}
+            size={"lg"}
+            color={"white"}
+            position={"absolute"}
+            left={"50%"}
+            top={"50%"}
+            transform={"translateX(-50%) translateY(-50%)"}
+          />
+          <Image
+            alt={"Hero Image"}
+            fit={"cover"}
+            align={"center"}
+            w={"100%"}
+            h={"100%"}
+            src={
+              "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+            }
+          />
+        </Box>
+      </Flex>
+    </Stack>
+  </Container>
+);
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+const Blob = (props: IconProps) => {
+  return (
+    <Icon
+      width={"100%"}
+      viewBox="0 0 578 440"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M239.184 439.443c-55.13-5.419-110.241-21.365-151.074-58.767C42.307 338.722-7.478 282.729.938 221.217c8.433-61.644 78.896-91.048 126.871-130.712 34.337-28.388 70.198-51.348 112.004-66.78C282.34 8.024 325.382-3.369 370.518.904c54.019 5.115 112.774 10.886 150.881 49.482 39.916 40.427 49.421 100.753 53.385 157.402 4.13 59.015 11.255 128.44-30.444 170.44-41.383 41.683-111.6 19.106-169.213 30.663-46.68 9.364-88.56 35.21-135.943 30.551z"
+        fill="currentColor"
+      />
+    </Icon>
+  );
+};
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+interface FeatureProps {
+  text: string;
+  iconBg: string;
+  icon?: ReactElement;
+}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+const Feature = ({ text, icon, iconBg }: FeatureProps) => {
+  return (
+    <Stack direction={"row"} align={"center"}>
+      <Flex
+        w={8}
+        h={8}
+        align={"center"}
+        justify={"center"}
+        rounded={"full"}
+        bg={iconBg}
+      >
+        {icon}
+      </Flex>
+      <Text fontWeight={600}>{text}</Text>
+    </Stack>
+  );
+};
+
+function SplitWithImage() {
+  return (
+    <Container maxW={"7xl"} py={12}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        <Flex>
+          <Image
+            rounded={"md"}
+            alt={"feature image"}
+            src={
+              "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            }
+            objectFit={"cover"}
+          />
+        </Flex>
+        <Stack spacing={4}>
+          <Text
+            textTransform={"uppercase"}
+            color={"blue.400"}
+            fontWeight={600}
+            fontSize={"sm"}
+            bg={useColorModeValue("blue.50", "blue.900")}
+            p={2}
+            alignSelf={"flex-start"}
+            rounded={"md"}
+          >
+            Our features
+          </Text>
+          <Heading>Security SAAS</Heading>
+          <Text color={"gray.500"} fontSize={"lg"}>
+            Our Mission is to help you manage your servers and infrastructure
+          </Text>
+          <Stack
+            spacing={4}
+            divider={
+              <StackDivider
+                borderColor={useColorModeValue("gray.100", "gray.700")}
+              />
+            }
+          >
+            <Feature
+              iconBg={useColorModeValue("yellow.100", "yellow.900")}
+              text={"Server Logs"}
+            />
+            <Feature
+              iconBg={useColorModeValue("green.100", "green.900")}
+              text={"Push Notifications"}
+            />
+            <Feature
+              iconBg={useColorModeValue("purple.100", "purple.900")}
+              text={"Raports & Insights"}
+            />
+          </Stack>
+        </Stack>
+      </SimpleGrid>
+    </Container>
+  );
 }
