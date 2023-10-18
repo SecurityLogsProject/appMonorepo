@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckCircleIcon } from "@chakra-ui/icons";
 import {
   Container,
   Stack,
@@ -70,19 +71,7 @@ const Hero = () => (
         <Stack
           spacing={{ base: 4, sm: 6 }}
           direction={{ base: "column", sm: "row" }}
-        >
-          <Button
-            rounded={"full"}
-            size={"lg"}
-            fontWeight={"normal"}
-            px={6}
-            colorScheme={"blue"}
-            bg={"blue.400"}
-            _hover={{ bg: "blue.500" }}
-          >
-            Get started
-          </Button>
-        </Stack>
+        ></Stack>
       </Stack>
       <Flex
         flex={1}
@@ -218,15 +207,18 @@ function SplitWithImage() {
             }
           >
             <Feature
-              iconBg={useColorModeValue("yellow.100", "yellow.900")}
+              icon={<CheckCircleIcon />}
+              iconBg={useColorModeValue("blue.100", "blue.900")}
               text={"Server Logs"}
             />
             <Feature
-              iconBg={useColorModeValue("green.100", "green.900")}
+              icon={<CheckCircleIcon />}
+              iconBg={useColorModeValue("blue.100", "blue.900")}
               text={"Push Notifications"}
             />
             <Feature
-              iconBg={useColorModeValue("purple.100", "purple.900")}
+              icon={<CheckCircleIcon />}
+              iconBg={useColorModeValue("blue.100", "blue.900")}
               text={"Raports & Insights"}
             />
           </Stack>
