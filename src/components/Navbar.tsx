@@ -1,6 +1,10 @@
 "use client";
 
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+
 import {
+  Avatar,
   Box,
   Flex,
   Text,
@@ -25,6 +29,7 @@ import {
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const { data: session } = useSession();
 
   return (
     <Box>
@@ -70,32 +75,51 @@ export default function WithSubnavigation() {
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
+          alignItems={"center"}
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Sign In
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"blue.400"}
-            href={"#"}
-            _hover={{
-              bg: "blue.300",
-            }}
-          >
-            Sign Up
-          </Button>
+          {session?.user ? (
+            <>
+              <Avatar
+                size="md"
+                name={session?.user?.name as string}
+                src={session?.user?.image as string}
+              />
+              <Text as="b">{session.user.name}</Text>
+              <Button
+                onClick={signOut as any}
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"blue.400"}
+                href={"#"}
+                _hover={{
+                  bg: "blue.300",
+                }}
+              >
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <Button
+              onClick={signIn as any}
+              as={"a"}
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"blue.400"}
+              href={"#"}
+              _hover={{
+                bg: "blue.300",
+              }}
+            >
+              Sign In
+            </Button>
+          )}
         </Stack>
       </Flex>
 
