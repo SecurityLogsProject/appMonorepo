@@ -42,10 +42,10 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  machines      Machine[]
+  daemons       Daemon[]
 }
 
-model Machine {
+model Daemon {
   id            String    @id @default(cuid())
   name          String
   userId        String
@@ -57,5 +57,5 @@ model Log {
   id            String    @id @default(cuid())
   content       String
   machineId     String
-  machine Machine @relation(fields: [machineId], references: [id])
+  machine Daemon @relation(fields: [machineId], references: [id])
 }
