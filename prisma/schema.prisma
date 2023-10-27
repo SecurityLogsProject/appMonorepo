@@ -48,9 +48,9 @@ model User {
 model Daemon {
   id            String    @id @default(cuid())
   name          String
-  userId        String
+  userEmail     String
   logs          Log[]
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userEmail], references: [email])
 }
 
 model Log {

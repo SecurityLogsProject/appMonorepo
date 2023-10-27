@@ -92,11 +92,13 @@ export default function WithSubnavigation() {
                     {session?.user ? (
                         <>
                             <Avatar
-                                size="md"
+                                size="sm"
                                 name={session?.user?.name as string}
                                 src={session?.user?.image as string}
                             />
-                            <Text as="b">{session.user.name}</Text>
+                            <Text className="whitespace-nowrap">
+                                {session.user.name}
+                            </Text>
                             <Button
                                 onClick={signOut as any}
                                 as={'a'}
