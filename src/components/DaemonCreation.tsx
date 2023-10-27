@@ -51,7 +51,8 @@ export default function DaemonCreationForm() {
         if (state?.status === Statuses.ERROR) {
             toast({
                 title: 'Error Ocurred.',
-                description: 'There was an error when creating new Daemon',
+                description:
+                    'There was an error when creating new Daemon. Check if daemon name is unique',
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
@@ -68,6 +69,7 @@ export default function DaemonCreationForm() {
                 <Input
                     name="daemonName"
                     placeholder="Daemon name"
+                    required
                     className="my-2"
                 />
                 <SubmitButton />

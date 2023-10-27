@@ -24,7 +24,6 @@ import { ReactElement } from 'react'
 export default function Home() {
     return (
         <div className="hero">
-            <DaemonCreationForm />
             <Hero />
             <SplitWithImage />
         </div>

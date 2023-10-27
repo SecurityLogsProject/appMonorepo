@@ -51,6 +51,7 @@ model Daemon {
   userEmail     String
   logs          Log[]
   user User @relation(fields: [userEmail], references: [email])
+  @@unique([userEmail, name])
 }
 
 model Log {

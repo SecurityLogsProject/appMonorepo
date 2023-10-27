@@ -1,6 +1,7 @@
 'use server'
-import { createDaemon } from '@/queries/machinesQueries'
+import { createDaemon } from '@/queries/daemons'
 import { Statuses } from '@/utils'
+import { revalidatePath } from 'next/cache'
 export default async function createDaemonAction(
     prevState: any,
     formData: FormData
@@ -10,6 +11,7 @@ export default async function createDaemonAction(
         if (!daemonName) throw new Error()
 
         await createDaemon(daemonName)
+        revalidatePath('/admin/daemons')
         return {
             status: Statuses.OK,
         }
