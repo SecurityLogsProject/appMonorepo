@@ -1,7 +1,8 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
+
+import Link from "next/link";
 
 import {
   Avatar,
@@ -64,7 +65,7 @@ export default function WithSubnavigation() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            Logo
+            <Link href="/">Logo</Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -306,5 +307,9 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Pricing",
     href: "/pricing",
+  },
+  {
+    label: "Machines",
+    href: "/machines",
   },
 ];
