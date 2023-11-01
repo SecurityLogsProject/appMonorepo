@@ -22,17 +22,12 @@ import { redirect } from 'next/navigation'
 import { ReactElement } from 'react'
 
 export default function Home() {
-    const { data: session, status } = useSession()
-    if (status !== 'authenticated') {
-        return (
-            <div className="hero">
-                <Hero />
-                <SplitWithImage />
-            </div>
-        )
-    } else {
-        redirect('/admin')
-    }
+    return (
+        <div className="hero">
+            <Hero />
+            <SplitWithImage />
+        </div>
+    )
 }
 
 const Hero = () => (

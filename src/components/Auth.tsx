@@ -39,7 +39,9 @@ export default function Auth() {
                 </>
             ) : (
                 <Button
-                    onClick={signIn as any}
+                    onClick={() =>
+                        signIn(undefined, { callbackUrl: '/admin' }) as any
+                    }
                     as={'a'}
                     display={{ base: 'none', md: 'inline-flex' }}
                     fontSize={'sm'}
