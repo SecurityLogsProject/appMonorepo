@@ -1,6 +1,5 @@
 'use client'
 
-import DaemonCreationForm from '@/components/DaemonCreation'
 import Navbar from '@/components/Navbar'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import {
@@ -10,25 +9,30 @@ import {
     Box,
     Heading,
     Text,
-    Button,
     Image,
     Icon,
     IconButton,
-    createIcon,
     IconProps,
     useColorModeValue,
     SimpleGrid,
     StackDivider,
 } from '@chakra-ui/react'
+import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 import { ReactElement } from 'react'
 
 export default function Home() {
-    return (
-        <div className="hero">
-            <Hero />
-            <SplitWithImage />
-        </div>
-    )
+    const { data: session, status } = useSession()
+    if (status !== 'authenticated') {
+        return (
+            <div className="hero">
+                <Hero />
+                <SplitWithImage />
+            </div>
+        )
+    } else {
+        redirect('/admin')
+    }
 }
 
 const Hero = () => (

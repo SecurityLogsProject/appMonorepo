@@ -22,7 +22,7 @@ export default function Auth() {
                         {session.user.name}
                     </Text>
                     <Button
-                        onClick={signOut as any}
+                        onClick={() => signOut({ callbackUrl: '/' })}
                         as={'a'}
                         display={{ base: 'none', md: 'inline-flex' }}
                         fontSize={'sm'}
