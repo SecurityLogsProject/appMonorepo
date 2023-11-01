@@ -1,22 +1,16 @@
-"use client";
+'use client'
 
-import { SessionProvider } from "next-auth/react";
-import { CacheProvider } from "@chakra-ui/next-js";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Session } from "next-auth";
+import { SessionProvider } from 'next-auth/react'
+import { CacheProvider } from '@chakra-ui/next-js'
+import { ChakraProvider } from '@chakra-ui/react'
+import { Session } from 'next-auth'
 
-export function Providers({
-  children,
-  session,
-}: {
-  children: React.ReactNode;
-  session: Session;
-}) {
-  return (
-    <ChakraProvider>
-      <SessionProvider session={session}>
-        <CacheProvider>{children}</CacheProvider>
-      </SessionProvider>
-    </ChakraProvider>
-  );
+export function Providers({ children }: { children: React.ReactNode }) {
+    return (
+        <ChakraProvider>
+            <SessionProvider>
+                <CacheProvider>{children}</CacheProvider>
+            </SessionProvider>
+        </ChakraProvider>
+    )
 }
