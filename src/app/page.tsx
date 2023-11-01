@@ -1,6 +1,7 @@
 'use client'
 
 import DaemonCreationForm from '@/components/DaemonCreation'
+import Navbar from '@/components/Navbar'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import {
     Container,
@@ -32,6 +33,7 @@ export default function Home() {
 
 const Hero = () => (
     <Container maxW={'7xl'}>
+        <Navbar />
         <Stack
             align={'center'}
             spacing={{ base: 8, md: 10 }}

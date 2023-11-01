@@ -26,6 +26,7 @@ import {
     ChevronDownIcon,
     ChevronRightIcon,
 } from '@chakra-ui/icons'
+import Auth from './Auth'
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure()
@@ -81,58 +82,7 @@ export default function WithSubnavigation() {
                         <DesktopNav />
                     </Flex>
                 </Flex>
-
-                <Stack
-                    flex={{ base: 1, md: 0 }}
-                    justify={'flex-end'}
-                    alignItems={'center'}
-                    direction={'row'}
-                    spacing={6}
-                >
-                    {session?.user ? (
-                        <>
-                            <Avatar
-                                size="sm"
-                                name={session?.user?.name as string}
-                                src={session?.user?.image as string}
-                            />
-                            <Text className="whitespace-nowrap">
-                                {session.user.name}
-                            </Text>
-                            <Button
-                                onClick={signOut as any}
-                                as={'a'}
-                                display={{ base: 'none', md: 'inline-flex' }}
-                                fontSize={'sm'}
-                                fontWeight={600}
-                                color={'white'}
-                                bg={'blue.400'}
-                                href={'#'}
-                                _hover={{
-                                    bg: 'blue.300',
-                                }}
-                            >
-                                Sign Out
-                            </Button>
-                        </>
-                    ) : (
-                        <Button
-                            onClick={signIn as any}
-                            as={'a'}
-                            display={{ base: 'none', md: 'inline-flex' }}
-                            fontSize={'sm'}
-                            fontWeight={600}
-                            color={'white'}
-                            bg={'blue.400'}
-                            href={'#'}
-                            _hover={{
-                                bg: 'blue.300',
-                            }}
-                        >
-                            Sign In
-                        </Button>
-                    )}
-                </Stack>
+                <Auth />
             </Flex>
 
             <Collapse in={isOpen} animateOpacity>
