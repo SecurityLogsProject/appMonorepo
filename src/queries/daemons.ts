@@ -29,13 +29,13 @@ export const listDaemons = async () => {
         throw Error('no logged user!')
     }
 
-    return prisma.daemon.findMany({
-        where: {
-            user: {
-                email: session.user.email,
-            },
-        },
-    })
+    // return prisma.daemon.findMany({
+    //     where: {
+    //         user: {
+    //             email: session.user.email,
+    //         },
+    //     },
+    // })
 }
 
 export const getDaemon = async (name: string) => {
