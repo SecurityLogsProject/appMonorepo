@@ -22,4 +22,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Link to site
 
-  https://app-monorepo-qdkhgthpw-chekiros-projects.vercel.app/
+  https://app-monorepo-chekiro-chekiros-projects.vercel.app
