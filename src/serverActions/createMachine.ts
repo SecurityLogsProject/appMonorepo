@@ -1,8 +1,8 @@
 'use server'
-import { createDaemon } from '@/queries/daemons'
+import { createMachine } from '@/queries/machines'
 import { Statuses } from '@/utils'
 import { revalidatePath } from 'next/cache'
-export default async function createDaemonAction(
+export default async function createMachineAction(
     prevState: any,
     formData: FormData
 ): Promise<{ status: Statuses }> {
@@ -10,7 +10,7 @@ export default async function createDaemonAction(
         const daemonName = formData.get('daemonName')?.toString()
         if (!daemonName) throw new Error()
 
-        await createDaemon(daemonName)
+        await createMachine(daemonName)
         revalidatePath('/admin/daemons')
         return {
             status: Statuses.OK,

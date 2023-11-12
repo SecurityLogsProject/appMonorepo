@@ -1,12 +1,7 @@
-import DaemonCreationForm from '@/components/DaemonCreation'
-import { listDaemons } from '@/queries/daemons'
+import MachinesView from '@/components/MachinesViewPage'
+import { listMachines } from '@/queries/machines'
 
-export default async function DaemonsList() {
-    const daemons = await listDaemons()
-    return (
-        <div>
-            {JSON.stringify(daemons)}
-            <DaemonCreationForm />
-        </div>
-    )
+export default async function MachinesViewPage() {
+    const machinesList = await listMachines()
+    return <MachinesView machinesList={machinesList} />
 }
