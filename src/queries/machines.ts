@@ -3,49 +3,49 @@ import { PrismaClient } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 const prisma = new PrismaClient()
 
-export const createDaemon = async (daemonName: string) => {
-    const session = await getServerSession(authOptions)
-
+export const createMachine = async (machineName: string) => {
+    const session = await getServerSession(authOptions);
+    
     if (!session?.user?.email) {
         throw Error('no logged user!')
     }
 
-    if (!daemonName) {
-        throw Error('no daemon name provided!')
+    if (!machineName) {
+        throw Error('no machine name provided!')
     }
 
-    return prisma.daemon.create({
+    return prisma.machine.create({
         data: {
             userEmail: session?.user?.email,
-            name: daemonName,
+            name: machineName,
         },
     })
 }
 
-export const listDaemons = async () => {
+export const listMachines = async () => {
     const session = await getServerSession(authOptions)
 
     if (!session?.user?.email) {
         throw Error('no logged user!')
     }
 
-    // return prisma.daemon.findMany({
-    //     where: {
-    //         user: {
-    //             email: session.user.email,
-    //         },
-    //     },
-    // })
+    return prisma.machine.findMany({
+        where: {
+            user: {
+                email: session.user.email,
+            },
+        },
+    })
 }
 
-export const getDaemon = async (name: string) => {
+export const getMachine = async (name: string) => {
     const session = await getServerSession(authOptions)
 
     if (!session?.user?.email) {
         throw Error('no logged user!')
     }
 
-    return prisma.daemon.findFirstOrThrow({
+    return prisma.machine.findFirstOrThrow({
         where: {
             name: name,
             user: {
