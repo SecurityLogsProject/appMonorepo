@@ -49,6 +49,7 @@ model Machine {
   id            String    @id @default(cuid())
   name          String
   userEmail     String
+  machineKey    String
   logs          Log[]
   user User @relation(fields: [userEmail], references: [email])
   @@unique([userEmail, name])
