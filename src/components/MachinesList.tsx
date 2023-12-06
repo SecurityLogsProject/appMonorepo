@@ -31,7 +31,7 @@ export default function MachinesList({ machinesList, onAddMachineFunc }: any) {
                             fontWeight={600}
                             color={'white'}
                             bg={'blue.400'}
-                            href={'#'}
+                            href={`/admin/machines/${item.name}`}
                             _hover={{
                                 bg: 'blue.300',
                             }}
