@@ -60,4 +60,16 @@ model Log {
   content       String
   machineId     String
   machine Machine @relation(fields: [machineId], references: [id])
+  events        Event[]
+}
+
+model Event {
+  event_id      String    @id @default(cuid())
+  logId         String    
+  log Log  @relation(fields: [logId], references: [id], onDelete: Cascade)
+  event_data    String
+  event_type    String
+  event_record  String
+  event_source  String
+  event_content String
 }
