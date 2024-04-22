@@ -7,11 +7,11 @@ export default async function createMachineAction(
     formData: FormData
 ): Promise<{ status: Statuses }> {
     try {
-        const daemonName = formData.get('daemonName')?.toString()
-        if (!daemonName) throw new Error()
+        const machineName = formData.get('machineName')?.toString()
+        if (!machineName) throw new Error()
 
-        await createMachine(daemonName)
-        revalidatePath('/admin/daemons')
+        await createMachine(machineName)
+        revalidatePath('/admin/machines')
         return {
             status: Statuses.OK,
         }

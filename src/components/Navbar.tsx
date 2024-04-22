@@ -280,7 +280,7 @@ const NAV_ITEMS: Array<NavItem> = [
         children: [
             {
                 label: 'Machine Logs',
-                subLabel: 'Setup our log daemon on your machine',
+                subLabel: 'Setup our log machine on your machine',
                 href: '#',
             },
         ],

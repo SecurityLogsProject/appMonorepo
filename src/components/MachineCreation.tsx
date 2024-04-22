@@ -44,7 +44,7 @@ export default function MachineCreationForm({ isOpen, onOpen, onClose }: any) {
         if (state?.status === Statuses.OK) {
             toast({
                 title: 'Machine created.',
-                description: "We've created new daemon for you.",
+                description: "We've created new machine for you.",
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
@@ -55,7 +55,7 @@ export default function MachineCreationForm({ isOpen, onOpen, onClose }: any) {
             toast({
                 title: 'Error Ocurred.',
                 description:
-                    'There was an error when creating new Machine. Check if daemon name is unique',
+                    'There was an error when creating new Machine. Check if machine name is unique',
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
@@ -73,7 +73,7 @@ export default function MachineCreationForm({ isOpen, onOpen, onClose }: any) {
                     <ModalBody>
                         <form action={formAction}>
                             <Input
-                                name="daemonName"
+                                name="machineName"
                                 placeholder="Machine name"
                                 required
                                 className="my-2"
