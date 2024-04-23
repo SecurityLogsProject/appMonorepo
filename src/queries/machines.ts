@@ -47,13 +47,18 @@ export const getMachine = async (name: string) => {
         throw Error('no logged user!')
     }
 
-    console.log(name)
     return prisma.machine.findFirstOrThrow({
         where: {
             name: name.replace('%20', ' '),
             user: {
                 email: session.user.email,
             },
-        },
+        },include: {
+            logs: {
+                orderBy: {
+                    created: 'desc'
+                }
+            } 
+        }
     })
 }

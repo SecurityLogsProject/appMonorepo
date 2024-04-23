@@ -42,7 +42,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  daemons       Machine[]
+  machines      Machine[]
 }
 
 model Machine {
@@ -59,17 +59,7 @@ model Log {
   id            String    @id @default(cuid())
   content       String
   machineId     String
-  machine Machine @relation(fields: [machineId], references: [id])
-  events        Event[]
-}
-
-model Event {
-  event_id      String    @id @default(cuid())
-  logId         String    
-  log Log  @relation(fields: [logId], references: [id], onDelete: Cascade)
-  event_data    String
-  event_type    String
-  event_record  String
-  event_source  String
-  event_content String
+  machine       Machine @relation(fields: [machineId], references: [id])
+  created       DateTime @default(now())
+  properties    Json?
 }
