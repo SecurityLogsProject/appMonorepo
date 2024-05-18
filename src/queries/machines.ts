@@ -40,12 +40,13 @@ export const listMachines = async () => {
     })
 }
 
-export const getMachine = async (name: string) => {
+export const getMachine = async (name: string, take = 1) => {
     const session = await getServerSession(authOptions)
 
     if (!session?.user?.email) {
         throw Error('no logged user!')
     }
+    console.log("TAKE", take)
 
     return prisma.machine.findFirstOrThrow({
         where: {
@@ -57,8 +58,9 @@ export const getMachine = async (name: string) => {
             logs: {
                 orderBy: {
                     created: 'desc'
-                }
-            } 
+                },
+                take
+            }
         }
     })
 }
