@@ -46,7 +46,6 @@ export const getMachine = async (name: string, take = 1) => {
     if (!session?.user?.email) {
         throw Error('no logged user!')
     }
-    console.log("TAKE", take)
 
     return prisma.machine.findFirstOrThrow({
         where: {

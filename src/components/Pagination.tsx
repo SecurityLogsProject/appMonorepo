@@ -1,7 +1,10 @@
 'use client'
 import { Button } from '@chakra-ui/react'
-
-export default function Pagination({path}: any) {
+import { revalidatePath } from 'next/cache'
+import { usePathname, useRouter } from 'next/navigation'
+export default function Pagination({currentPaginationCount}: any) {
+    const pathname = usePathname();
+    const router = useRouter()
     return (
         <Button
             color={'white'}
@@ -9,7 +12,7 @@ export default function Pagination({path}: any) {
             _hover={{
                 bg: 'blue.300',
             }}
-            onClick={() => alert(path)}
+            onClick={() => router.push(pathname+`?take=${currentPaginationCount+1}`)}
         >
             Load more logs
         </Button>

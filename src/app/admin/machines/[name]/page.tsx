@@ -27,7 +27,7 @@ export default async function MachineDetails({
                     </CardBody>
                 </Card>
                 <MachineLogs logs={machineDetails.logs}></MachineLogs>
-                <Pagination path='test'/>
+                <Pagination currentPaginationCount={currentPaginationCount}/>
             </div>
         )
     } catch (e) {
