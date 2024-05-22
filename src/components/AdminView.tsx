@@ -31,10 +31,12 @@ import {
     FiMenu,
     FiBell,
     FiChevronDown,
+    FiDownload,
 } from 'react-icons/fi'
 import { IconType } from 'react-icons'
 import Navbar from './Navbar'
 import Auth from './Auth'
+import { DownloadIcon } from '@chakra-ui/icons'
 
 interface LinkItemProps {
     name: string
@@ -58,6 +60,7 @@ interface SidebarProps extends BoxProps {
 
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Machines', icon: FiTrendingUp, path: '/admin' },
+    { name: 'Client Installation', icon: FiDownload, path: '/admin/client-install'}
 ]
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
