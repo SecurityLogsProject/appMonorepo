@@ -8,7 +8,7 @@ export default async function MachineDetails({
     searchParams
 }: {
     params: { name: string }
-    ,searchParams: {take: number}
+    , searchParams: { take: number }
 }) {
     try {
         let currentPaginationCount = Number(searchParams.take) || 1;
@@ -16,7 +16,7 @@ export default async function MachineDetails({
             params.name,
             currentPaginationCount
         )
- 
+
         return (
             <div>
                 <Card>
@@ -26,8 +26,17 @@ export default async function MachineDetails({
                         <Text>Machine Key: {machineDetails.machineKey}</Text>
                     </CardBody>
                 </Card>
-                <MachineLogs logs={machineDetails.logs}></MachineLogs>
-                <Pagination currentPaginationCount={currentPaginationCount}/>
+                {machineDetails.logs?.length && (
+                    <>
+                        <MachineLogs logs={machineDetails.logs}></MachineLogs>
+                        <Pagination currentPaginationCount={currentPaginationCount}/>
+                    </>
+                )
+                }
+                {!machineDetails.logs?.length && (
+                    <p>No machines yet!</p>
+                )
+                }
             </div>
         )
     } catch (e) {
