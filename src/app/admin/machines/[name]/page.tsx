@@ -1,7 +1,10 @@
 import MachineLogs from '@/components/MachineLogs'
 import Pagination from '@/components/Pagination'
 import { getMachine } from '@/queries/machines'
-import { Card, CardBody, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
+import { headers } from 'next/headers'
+import { machine } from 'os'
+import MachineEnv from '@/components/MachineEnv'
 
 export default async function MachineDetails({
     params,
@@ -12,6 +15,9 @@ export default async function MachineDetails({
 }) {
     try {
         let currentPaginationCount = Number(searchParams.take) || 1;
+        
+        const host = headers()
+        console.log(host)
         let machineDetails = await getMachine(
             params.name,
             currentPaginationCount
@@ -26,17 +32,18 @@ export default async function MachineDetails({
                         <Text>Machine Key: {machineDetails.machineKey}</Text>
                     </CardBody>
                 </Card>
-                {machineDetails.logs?.length && (
+                {(machineDetails.logs?.length) > 0 &&
                     <>
                         <MachineLogs logs={machineDetails.logs}></MachineLogs>
-                        <Pagination currentPaginationCount={currentPaginationCount}/>
+                        <Pagination currentPaginationCount={currentPaginationCount} />
                     </>
-                )
                 }
                 {!machineDetails.logs?.length && (
-                    <p>No machines yet!</p>
-                )
-                }
+                    <Card className='my-2'>
+                        <CardHeader>To setup client for this machine locally, fill those values to .env file</CardHeader>
+                        <MachineEnv machineDetails={machineDetails}></MachineEnv>
+                    </Card>
+                )}
             </div>
         )
     } catch (e) {
